@@ -169,7 +169,8 @@ class SA1BRawDataset(VOSRawDataset):
         else:
             subset = os.listdir(self.img_folder)
             subset = [
-                path.split(".")[0] for path in subset if path.endswith(".jpg")
+                os.path.splitext(path.strip())[0] for path in subset if path.endswith(".jpg")
+                # path.split(".")[-2] for path in subset if path.endswith(".jpg")
             ]  # remove extension
 
         # Read and process excluded files if provided
